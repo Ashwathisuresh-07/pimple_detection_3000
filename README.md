@@ -30,10 +30,7 @@ PimpleDetector3000 combines MediaPipe facial detection with colour-based image a
 ## Technical Details
 ### Technologies/Components Used
 For Software:
--The project consists of:
-
-pimple-detection-3000/
-│<img width="1878" height="1021" alt="Screenshot 2026-09-05 061200" src="https://github.com/user-attachments/assets/1687bdce-f7e6-4108-b431-9145060b17d1" />
+-The project consists of
 
 ├── index.html      # Application structure and UI
 ├── style.css       # Styling and visual design
