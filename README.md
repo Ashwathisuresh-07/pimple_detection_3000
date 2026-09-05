@@ -33,7 +33,8 @@ For Software:
 -The project consists of:
 
 pimple-detection-3000/
-│
+│<img width="1878" height="1021" alt="Screenshot 2026-09-05 061200" src="https://github.com/user-attachments/assets/1687bdce-f7e6-4108-b431-9145060b17d1" />
+
 ├── index.html      # Application structure and UI
 ├── style.css       # Styling and visual design
 ├── app.js          # MediaPipe, webcam, face detection and colour analysis
@@ -61,7 +62,8 @@ This shows the basic view of the site when opened asking if we are ready for ima
 
 <img width="1888" height="1022" alt="Screenshot 2026-09-05 061134" src="https://github.com/user-attachments/assets/5fa11ba8-c865-4301-b392-543194664dd4" /><img width="1878"height="1021" alt="Screenshot 2026-09-05 061200" src="https://github.com/user-attachments/assets/e1718906-bf94-49fe-95f8-005acc6fb44e" /> 
 This shows the actual face scanning process(contains front view,90 left view,90 right view)
-<img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
+
+<img width="1878" height="1021" alt="Screenshot 2026-09-05 061200" src="https://github.com/user-attachments/assets/65eb319e-e1f7-4869-9572-275d7c237a69" />
 This image shows the final result showing number of pimples..
 
 
