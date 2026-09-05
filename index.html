@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Pimple Counter 3000</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body class="bg-slate-900 text-white font-sans min-h-screen flex flex-col items-center justify-center p-4">
+
+```
+<!-- HOME SCREEN -->
+<section
+    id="home-screen"
+    class="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-8 flex flex-col items-center text-center"
+>
+    <h1 class="text-4xl font-extrabold text-lime-400 tracking-wide uppercase">
+        Pimple Counter 3000
+    </h1>
+
+    <p class="text-slate-400 mt-2 mb-8">
+        Advanced Useless Dermatological Scanning Suite
+    </p>
+
+    <div class="w-full bg-slate-900/50 rounded-xl border border-slate-700 p-6 mb-8">
+        <p class="text-lg font-bold text-amber-400 mb-2">
+            Ready for pimple detection?
+        </p>
+
+        <p class="text-sm text-slate-400">
+            Your face must be clearly visible. The scanner will reject
+            objects, empty camera views, and unclear face positioning.
+            Minor skin discoloration is filtered separately.
+        </p>
+    </div>
+
+    <div
+        id="model-status"
+        class="w-full mb-4 text-xs text-slate-500"
+    >
+        Loading face detection system...
+    </div>
+
+    <button
+        id="start-btn"
+        disabled
+        class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-xl transition duration-200 text-lg uppercase tracking-wider shadow-lg shadow-lime-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+        Loading System...
+    </button>
+
+    <p id="home-error" class="hidden text-red-400 text-sm mt-4"></p>
+</section>
+
+
+<!-- MAIN APP -->
+<main
+    id="main-app"
+    class="hidden w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-6 flex-col items-center"
+>
+
+    <h2
+        id="scan-title"
+        class="text-xl font-bold text-center mb-4 text-amber-400"
+    >
+        Step 1: Scan Front Profile
+    </h2>
+
+
+    <!-- CAMERA -->
+    <div
+        class="relative w-full aspect-video bg-black rounded-xl overflow-hidden border border-slate-600 mb-6 flex items-center justify-center"
+    >
+        <video
+            id="webcam"
+            autoplay
+            playsinline
+            muted
+            class="w-full h-full object-cover scale-x-[-1]"
+        ></video>
+
+
+        <!-- SCANNER LINE -->
+        <div
+            id="scanner-line"
+            class="hidden absolute top-0 left-0 w-full h-1 bg-lime-400 shadow-[0_0_15px_#a3e635]"
+        ></div>
+
+
+        <!-- SCANNING OVERLAY -->
+        <div
+            id="scan-overlay"
+            class="hidden absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none"
+        >
+            <p class="text-lime-400 font-black uppercase tracking-[0.2em] text-sm animate-pulse">
+                Analyzing Skin...
+            </p>
+        </div>
+
+
+        <!-- FACE DETECTION WARNING -->
+        <div
+            id="camera-warning"
+            class="hidden absolute inset-x-4 bottom-4 bg-red-500/90 border border-red-300 rounded-xl p-3 text-center shadow-lg"
+        >
+            <p class="text-white font-black uppercase text-xs tracking-wider">
+                ⚠ Face Not Detected
+            </p>
+
+            <p
+                id="warning-detail"
+                class="text-white/80 text-xs mt-1"
+            >
+                Please show your face clearly to the camera.
+            </p>
+        </div>
+
+
+        <!-- FACE READY INDICATOR -->
+        <div
+            id="face-ready"
+            class="hidden absolute top-3 left-3 bg-lime-500/90 text-slate-950 px-3 py-1 rounded-lg"
+        >
+            <p class="text-[10px] font-black uppercase tracking-wider">
+                ✓ Face Detected
+            </p>
+        </div>
+    </div>
+
+
+    <!-- FACE POSITION INSTRUCTIONS -->
+    <div
+        id="face-instructions"
+        class="w-full bg-slate-900/70 border border-slate-700 rounded-xl p-3 mb-4 text-center"
+    >
+        <p class="text-xs text-slate-400">
+            Position your face clearly in the center of the camera.
+        </p>
+    </div>
+
+
+    <!-- CLEAR SKIN TOLERANCE -->
+    <div class="w-full bg-slate-900/80 p-4 rounded-xl border border-slate-700 mb-4">
+
+        <div class="flex items-center justify-between mb-3">
+            <p class="text-xs uppercase text-slate-400 tracking-wider">
+                Clear Skin Tolerance
+            </p>
+
+            <span
+                id="tolerance-value"
+                class="text-sm font-bold text-lime-400"
+            >
+                70%
+            </span>
+        </div>
+
+        <input
+            id="tolerance-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="70"
+            class="w-full accent-lime-400 cursor-pointer"
+        >
+
+        <p class="text-xs text-slate-500 mt-2">
+            Higher tolerance ignores more minor discoloration and natural skin variation.
+        </p>
+    </div>
+
+
+    <!-- ACTION BUTTON -->
+    <button
+        id="action-btn"
+        class="w-full py-4 bg-lime-500 hover:bg-lime-400 text-slate-950 font-black rounded-xl transition duration-200 text-lg uppercase tracking-wider shadow-lg shadow-lime-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+        Initialize Scan
+    </button>
+
+
+    <!-- RESULTS -->
+    <div
+        id="results"
+        class="hidden w-full mt-6 border-t border-slate-700 pt-6 animate-fade-in"
+    >
+
+        <h3 class="text-lg font-bold text-center text-lime-400 mb-4 uppercase">
+            Dermatological Breakdown
+        </h3>
+
+
+        <div
+            id="alarm-banner"
+            class="hidden mb-4 bg-red-500/10 border border-red-500 rounded-xl p-3 text-center animate-pulse"
+        >
+            <p class="text-red-400 font-black uppercase tracking-wider text-sm">
+                ⚠ Pimples Detected ⚠
+            </p>
+        </div>
+
+
+        <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-red-500/20 mb-4">
+            <p class="text-xs uppercase text-slate-400 tracking-wider">
+                Pimples Found
+            </p>
+
+            <p
+                id="ripe-count"
+                class="text-4xl font-black text-red-500 mt-1"
+            >
+                0
+            </p>
+        </div>
+
+
+        <div class="bg-slate-900/80 p-4 rounded-xl text-center border border-slate-700">
+            <p class="text-xs uppercase text-slate-400 tracking-wider">
+                Pop-ability Score
+            </p>
+
+            <p
+                id="pop-score"
+                class="text-2xl font-black text-lime-400 mt-1"
+            >
+                0%
+            </p>
+        </div>
+
+
+        <div
+            id="skin-status-card"
+            class="mt-4 bg-slate-900/50 p-4 rounded-xl text-center border border-slate-700"
+        >
+            <p class="text-xs uppercase text-slate-400 tracking-wider">
+                Skin Status
+            </p>
+
+            <p
+                id="skin-status"
+                class="text-xl font-black text-lime-400 mt-1"
+            >
+                ANALYZING...
+            </p>
+
+            <p
+                id="skin-detail"
+                class="text-xs text-slate-500 mt-2"
+            >
+                Minor discoloration will be ignored.
+            </p>
+        </div>
+
+    </div>
+</main>
+
+
+<!-- MediaPipe Face Detection -->
+<script type="module" src="app.js"></script>
+```
+
+</body>
+</html>

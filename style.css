@@ -1,0 +1,56 @@
+/* =========================================================
+   SCANNER ANIMATIONS & STYLES
+   ========================================================= */
+
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+.scanning {
+  animation: scan 2s linear infinite;
+  box-shadow: 
+    0 0 10px #a3e635,
+    0 0 20px rgba(163, 230, 53, 0.5);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+@keyframes warning-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#camera-warning {
+  animation: warning-pop 0.25s ease-out;
+}
+
+#tolerance-slider {
+  height: 6px;
+}
