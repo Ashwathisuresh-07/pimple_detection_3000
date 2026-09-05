@@ -9,7 +9,7 @@ Real-time facial pimple detection using MediaPipe and colour-based image analysi
 ### Team Members
 
 - Member 1: ASHWATHI P SURESH - MODEL ENGEENERING COLLEGE
-- Member 3: ASHIKA V K - MODEL ENGEENERING COLLEGE
+- Member 2: ASHIKA V K - MODEL ENGEENERING COLLEGE
 
 ### Project Description
 PimpleDetector3000 is a real-time facial skin and pimple detection web application powered by MediaPipe and colour grading/image analysis.
